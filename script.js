@@ -20,6 +20,16 @@ diceEl.classList.add('hidden');
 const scores = [0, 0];
 let activePlayer = 0;
 let currentScore = 0;
+
+//refractoring
+const switchPlayer = function () {
+  document.getElementById(`current--${activePlayer}`).textContent = 0;
+  currentScore = 0;
+  activePlayer = activePlayer === 0 ? 1 : 0;
+  player0El.classList.toggle('player--active'); //toggle: a classlist method that adds a property if absent or removes it if present.
+  player1El.classList.toggle('player--active');
+};
+
 rollDice.addEventListener('click', function () {
   const dice = Math.trunc(Math.random() * 6) + 1;
   console.log(dice);
@@ -32,10 +42,14 @@ rollDice.addEventListener('click', function () {
       currentScore;
     //current0El.textContent = currentScore;
   } else {
-    //switch players
-    document.getElementById(`current--${activePlayer}`).textContent = 0;
-    currentScore = 0;
-    activePlayer = activePlayer === 0 ? 1 : 0;
-    player0El.classList.toggle('player--active'); //toggle: a classlist method that adds a property if absent or removes it if present.
+    switchPlayer(); //switch players
   }
+});
+
+hold.addEventListener('click', function () {
+  scores[activePlayer] += currentScore; // to add the current score for the active player
+  document.getElementById(`current--${activePlayer}`).textContent =
+    scores[activePlayer];
+
+  switchPlayer();
 });
