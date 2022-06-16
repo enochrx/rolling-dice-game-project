@@ -17,6 +17,8 @@ score0El.textContent = 0;
 score1El.textContent = 0;
 diceEl.classList.add('hidden');
 
+const scores = [0, 0];
+let activePlayer = 0;
 let currentScore = 0;
 rollDice.addEventListener('click', function () {
   const dice = Math.trunc(Math.random() * 6) + 1;
@@ -26,7 +28,9 @@ rollDice.addEventListener('click', function () {
   diceEl.src = `dice-${dice}.png`; //displays the corresponding dice image number
   if (dice !== 1) {
     currentScore += dice; //add score to current score
-    current0El.textContent = currentScore;
+    document.getElementById(`current--${activePlayer}`).textContent =
+      currentScore;
+    //current0El.textContent = currentScore;
   } else {
     //switch players
   }
