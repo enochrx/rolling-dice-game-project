@@ -48,7 +48,7 @@ rollDice.addEventListener('click', function () {
 
 hold.addEventListener('click', function () {
   scores[activePlayer] += currentScore; // to add the current score for the active player
-  document.getElementById(`current--${activePlayer}`).textContent =
+  document.getElementById(`score--${activePlayer}`).textContent =
     scores[activePlayer];
 
   switchPlayer();
