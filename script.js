@@ -20,8 +20,9 @@ diceEl.classList.add('hidden');
 const scores = [0, 0];
 let activePlayer = 0;
 let currentScore = 0;
+let playing = true;
 
-//refractoring
+//Refractoring
 const switchPlayer = function () {
   document.getElementById(`current--${activePlayer}`).textContent = 0;
   currentScore = 0;
@@ -30,6 +31,7 @@ const switchPlayer = function () {
   player1El.classList.toggle('player--active');
 };
 
+//Rolling dice functionality
 rollDice.addEventListener('click', function () {
   const dice = Math.trunc(Math.random() * 6) + 1;
   console.log(dice);
@@ -46,6 +48,7 @@ rollDice.addEventListener('click', function () {
   }
 });
 
+//Hold functionality
 hold.addEventListener('click', function () {
   scores[activePlayer] += currentScore; // to add the current score for the active player
   document.getElementById(`score--${activePlayer}`).textContent =
@@ -54,6 +57,13 @@ hold.addEventListener('click', function () {
   switchPlayer();
 
   if (scores[activePlayer] >= 20) {
-    document.querySelector(`.player--${activePlayer}`).classList.add('player');
+    document
+      .querySelector(`.player--${activePlayer}`)
+      .classList.add('player--winner');
+    document
+      .querySelector(`.player--${activePlayer}`)
+      .classList.remove('player--active');
+  } else {
+    switchPlayer();
   }
 });
