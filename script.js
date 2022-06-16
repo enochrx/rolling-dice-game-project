@@ -52,4 +52,8 @@ hold.addEventListener('click', function () {
     scores[activePlayer];
 
   switchPlayer();
+
+  if (scores[activePlayer] >= 20) {
+    document.querySelector(`.player--${activePlayer}`).classList.add('player');
+  }
 });
