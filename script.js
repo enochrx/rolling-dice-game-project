@@ -42,7 +42,7 @@ rollDice.addEventListener('click', function () {
       currentScore;
     //current0El.textContent = currentScore;
   } else {
-    switchPlayer(); //switch players
+    switchPlayer(); // called the function to switch players
   }
 });
 
