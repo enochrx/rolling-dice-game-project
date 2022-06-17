@@ -12,12 +12,14 @@ const rollDice = document.querySelector('.btn--roll');
 const newGame = document.querySelector('.btn--new');
 const hold = document.querySelector('.btn--hold');
 
+let scores, activePlayer, currentScore, playing;
+
 //Starting conditions
 const init = function () {
-  let scores = [0, 0];
-  let activePlayer = 0;
-  let currentScore = 0;
-  let playing = true;
+  scores = [0, 0];
+  activePlayer = 0;
+  currentScore = 0;
+  playing = true;
 
   score0El.textContent = 0;
   score1El.textContent = 0;
@@ -27,8 +29,7 @@ const init = function () {
   player0El.classList.remove('player--winner');
   player1El.classList.remove('player--winner');
   player0El.classList.add('player--active');
-  player0El.classList.remove('player--winner');
-  player0El.classList.remove('player--active');
+  player1El.classList.remove('player--active');
 };
 
 init();
@@ -69,7 +70,7 @@ hold.addEventListener('click', function () {
       scores[activePlayer];
 
     //checking if the player's score >= winning point
-    if (scores[activePlayer] >= 20) {
+    if (scores[activePlayer] >= 50) {
       //If condition is correct, game ends
       playing = false;
       diceEl.classList.add('hidden'); // dice is hidden
@@ -87,6 +88,4 @@ hold.addEventListener('click', function () {
 });
 
 //resetting the game to start over
-newGame.addEventListener('click', function () {
-  init();
-});
+newGame.addEventListener('click', init);
