@@ -32,7 +32,7 @@ const init = function () {
   player1El.classList.remove('player--active');
 };
 
-init();
+init(); //calling the function to access all the variables
 
 //Refractoring
 const switchPlayer = function () {
